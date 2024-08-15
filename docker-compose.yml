@@ -22,11 +22,11 @@ services:
         networks:
             - sail
         depends_on:
-            - mailpit
-            - mysql:
+            mysql:
                 condition: service_healthy
-            - redis:
+            redis:
                 condition: service_healthy
+
     mysql:
         image: 'mysql/mysql-server:8.0'
         ports:
@@ -47,6 +47,7 @@ services:
             test: ["CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}"]
             retries: 3
             timeout: 5s
+
     redis:
         image: 'redis:alpine'
         ports:
@@ -59,6 +60,7 @@ services:
             test: ["CMD", "redis-cli", "ping"]
             retries: 3
             timeout: 5s
+
     mailpit:
         image: 'axllent/mailpit:latest'
         ports:
@@ -66,6 +68,13 @@ services:
             - '${FORWARD_MAILPIT_DASHBOARD_PORT:-8025}:8025'
         networks:
             - sail
+        healthcheck:
+            test: ["CMD", "curl", "-f", "http://localhost:8025/"]
+            interval: 30s
+            timeout: 5s
+            retries: 3
+            start_period: 10s
+
 networks:
     sail:
         driver: bridge

@@ -8,7 +8,10 @@ fi
 composer install
 
 # Run migrations
-php artisan migrate:database
+php artisan migrate
+
+# Run migrations
+php artisan db:seed
 
 #  npm install
 #  npm run-script build

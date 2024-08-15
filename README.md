@@ -45,6 +45,12 @@ docker-compose up --build --detach --remove-orphans
 docker compose exec -it laravel.test bash
 ```
 
+### Stop running container
+
+```
+docker compose exec -it laravel.test bash
+```
+
 ## Contributing
 
 Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).

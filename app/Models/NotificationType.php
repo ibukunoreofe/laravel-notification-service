@@ -1,8 +1,5 @@
 <?php
 
-/**
- * Created by Reliese Model.
- */
 
 namespace App\Models;
 
@@ -26,6 +23,11 @@ class NotificationType extends Model
 {
 	protected $table = 'notification_types';
 
+    // Define notification types as constants
+    const ALERT = 'alert';
+    const NEWS = 'news';
+    const UPDATE = 'update';
+
 	protected $fillable = [
 		'type'
 	];
@@ -34,4 +36,18 @@ class NotificationType extends Model
 	{
 		return $this->hasMany(UserNotification::class);
 	}
+
+    /**
+     * An array of all notification types
+     *
+     * @return string[]
+     */
+    public static function getTypes(): array
+    {
+        return [
+            self::ALERT,
+            self::NEWS,
+            self::UPDATE,
+        ];
+    }
 }

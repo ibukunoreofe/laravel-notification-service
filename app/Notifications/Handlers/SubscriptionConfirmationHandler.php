@@ -10,6 +10,7 @@ class SubscriptionConfirmationHandler implements NotificationHandlerInterface
 {
     public function handle($title, $message): Mailable
     {
+        // $title => $notificationType
         return new SubscriptionConfirmationMail($title);
     }
 }

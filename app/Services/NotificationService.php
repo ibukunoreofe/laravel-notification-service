@@ -2,12 +2,26 @@
 
 namespace App\Services;
 
+use App\Models\NotificationType;
 use App\Models\User;
 use App\Notifications\GeneralNotification;
 use Illuminate\Support\Facades\Notification;
 
 class NotificationService
 {
+    /**
+     * Send a notification to a specific user.
+     *
+     * @param User $user
+     * @param string $notificationType
+     * @return void
+     */
+    public function sendSubscribedNotificationToUser(User $user, string $notificationType): void
+    {
+        $user->notify(new GeneralNotification(NotificationType::SUBSCRIPTION, $notificationType, null));
+    }
+
+
     /**
      * Send a notification to a specific user.
      *

@@ -12,9 +12,9 @@ class GeneralNotification extends Notification implements ShouldQueue
 
     protected string $notificationType;
     protected string $title;
-    protected string $message;
+    protected ?string $message;
 
-    public function __construct(string $notificationType, string $title, string $message)
+    public function __construct(string $notificationType, string $title, ?string $message)
     {
         $this->notificationType = $notificationType;
         $this->title = $title;

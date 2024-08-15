@@ -7,5 +7,10 @@ use Illuminate\Notifications\Messages\MailMessage;
 
 interface NotificationHandlerInterface
 {
-    public function handle($title, $message): MailMessage|Mailable;
+    /**
+     * @param string $title
+     * @param string|null $message
+     * @return MailMessage|Mailable
+     */
+    public function handle(string $title, ?string $message): MailMessage|Mailable;
 }

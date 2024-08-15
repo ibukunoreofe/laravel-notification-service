@@ -78,12 +78,13 @@ services:
             start_period: 10s
 
     echo-server:
-        image: oanhnn/laravel-echo-server:2.0.0
-        container_name: echo-server
-        volumes:
-            - './laravel-echo-server.json:/app/laravel-echo-server.json'
+        # https://docs.soketi.app/getting-started/environment-variables
+        # https://docs.soketi.app/getting-started/installation/cli-installation
+        image: quay.io/soketi/soketi:latest
+        container_name: soketi
         ports:
             - "6001:6001"
+            - "9601:9601"
         depends_on:
             - redis
         networks:

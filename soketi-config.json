@@ -1,0 +1,44 @@
+{
+  "debug": true,
+  "port": 6001,
+  "appManager": {
+    "driver": "array",
+    "array": {
+      "apps": [
+        {
+          "id": "my-app-id",
+          "key": "my-app-key",
+          "secret": "my-app-secret",
+          "webhooks": [
+            {
+              "url": "https://your-webhook-url.com",
+              "event_types": ["channel_occupied", "channel_vacated"],
+              "enabled": true
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "metrics": {
+    "enabled": true,
+    "driver": "prometheus",
+    "host": "0.0.0.0",
+    "port": 9601
+  },
+  "ssl": {
+    "enabled": false,
+    "certPath": "",
+    "keyPath": "",
+    "passphrase": "",
+    "caPath": ""
+  },
+  "cors": {
+    "credentials": true,
+    "origin": ["*"],
+    "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    "allowedHeaders": [
+      "Origin", "Content-Type", "X-Auth-Token", "X-Requested-With", "Accept", "Authorization", "X-CSRF-TOKEN", "XSRF-TOKEN", "X-Socket-Id"
+    ]
+  }
+}

@@ -28,7 +28,7 @@ Content-Type: application/json
   "user_id": {{ user_id }},
   "notification_type": "alert",
   "title": "System Alert",
-  "message": "An important system alert has been triggered."
+  "message": "An important system alert has been triggered again."
 }
 
 ### 4. View User's Notifications

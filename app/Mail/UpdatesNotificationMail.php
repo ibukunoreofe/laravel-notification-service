@@ -31,7 +31,7 @@ class UpdatesNotificationMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Important Update Notification')
-            ->markdown('emails.updates_notification');
+        return $this->view('emails.updates_notification')
+            ->subject('Important Update Notification');
     }
 }

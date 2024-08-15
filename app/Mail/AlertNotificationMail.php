@@ -31,7 +31,7 @@ class AlertNotificationMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Important Alert Notification')
-            ->markdown('emails.alert_notification');
+        return $this->view('emails.alert_notification')
+            ->subject('Important Alert Notification');
     }
 }

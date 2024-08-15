@@ -1,12 +1,13 @@
-<x-mail::message>
-# Introduction
-
-The body of your message.
-
-<x-mail::button :url="''">
-Button Text
-</x-mail::button>
-
-Thanks,<br>
-{{ config('app.name') }}
-</x-mail::message>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Notification</title>
+</head>
+<body>
+<h1>Important Update: {{ $updateTitle }}</h1>
+<p>{{ $updateMessage }}</p>
+<p>Thank you for your attention.</p>
+<p>Sincerely,</p>
+<p>The {{ config('app.name') }} Team</p>
+</body>
+</html>

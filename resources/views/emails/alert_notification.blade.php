@@ -1,12 +1,12 @@
-<x-mail::message>
-# Introduction
-
-The body of your message.
-
-<x-mail::button :url="''">
-Button Text
-</x-mail::button>
-
-Thanks,<br>
-{{ config('app.name') }}
-</x-mail::message>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Alert Notification</title>
+</head>
+<body>
+<h1>Alert: {{ $alertTitle }}</h1>
+<p>{{ $alertMessage }}</p>
+<p>Stay safe,</p>
+<p>The {{ config('app.name') }} Team</p>
+</body>
+</html>

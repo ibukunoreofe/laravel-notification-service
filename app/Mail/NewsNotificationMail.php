@@ -31,7 +31,7 @@ class NewsNotificationMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Latest News Update')
-            ->markdown('emails.news_notification');
+        return $this->view('emails.news_notification')
+            ->subject('Latest News Update');
     }
 }

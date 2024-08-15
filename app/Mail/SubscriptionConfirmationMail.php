@@ -29,7 +29,7 @@ class SubscriptionConfirmationMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Subscription Confirmation')
-            ->markdown('emails.subscription_confirmation');
+        return $this->view('emails.subscription_confirmation')
+            ->subject('Subscription Confirmation');
     }
 }

@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Session
- * 
+ *
  * @property string $id
  * @property int|null $user_id
  * @property string|null $ip_address
@@ -22,20 +22,20 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Session extends Model
 {
-	protected $table = 'sessions';
-	public $incrementing = false;
-	public $timestamps = false;
+    protected $table = 'sessions';
+    public $incrementing = false;
+    public $timestamps = false;
 
-	protected $casts = [
-		'user_id' => 'int',
-		'last_activity' => 'int'
-	];
+    protected $casts = [
+        'user_id' => 'int',
+        'last_activity' => 'int'
+    ];
 
-	protected $fillable = [
-		'user_id',
-		'ip_address',
-		'user_agent',
-		'payload',
-		'last_activity'
-	];
+    protected $fillable = [
+        'user_id',
+        'ip_address',
+        'user_agent',
+        'payload',
+        'last_activity'
+    ];
 }

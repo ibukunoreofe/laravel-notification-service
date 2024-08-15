@@ -12,13 +12,13 @@ use Illuminate\Notifications\Notifiable;
 
 /**
  * Class User
- * 
+ *
  * @property int $id
  * @property string $name
  * @property string $email
  * @property Carbon $created_at
  * @property Carbon|null $updated_at
- * 
+ *
  * @property Collection|UserNotification[] $user_notifications
  * @property Collection|NotificationType[] $notificationTypes
  *
@@ -26,19 +26,20 @@ use Illuminate\Notifications\Notifiable;
  */
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory;
+    use Notifiable;
 
-	protected $table = 'users';
+    protected $table = 'users';
 
-	protected $fillable = [
-		'name',
-		'email'
-	];
+    protected $fillable = [
+        'name',
+        'email'
+    ];
 
-	public function user_notifications(): HasMany
+    public function user_notifications(): HasMany
     {
-		return $this->hasMany(UserNotification::class);
-	}
+        return $this->hasMany(UserNotification::class);
+    }
 
     /**
      * The notification types that the user is subscribed to.

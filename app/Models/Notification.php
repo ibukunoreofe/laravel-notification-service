@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Notification
- * 
+ *
  * @property int $id
  * @property string $type
  * @property string $message
@@ -23,11 +23,11 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Notification extends Model
 {
-	protected $table = 'notifications';
+    protected $table = 'notifications';
 
-	protected $fillable = [
-		'type',
-		'message',
-		'status'
-	];
+    protected $fillable = [
+        'type',
+        'message',
+        'status'
+    ];
 }

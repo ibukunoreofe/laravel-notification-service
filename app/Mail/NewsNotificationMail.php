@@ -8,7 +8,8 @@ use Illuminate\Queue\SerializesModels;
 
 class NewsNotificationMail extends Mailable
 {
-    use Queueable, SerializesModels;
+    use Queueable;
+    use SerializesModels;
 
     public $newsTitle;
     public $newsMessage;

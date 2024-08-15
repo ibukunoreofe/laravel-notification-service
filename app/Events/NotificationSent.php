@@ -9,7 +9,8 @@ use Illuminate\Queue\SerializesModels;
 
 class NotificationSent implements ShouldBroadcast
 {
-    use InteractsWithSockets, SerializesModels;
+    use InteractsWithSockets;
+    use SerializesModels;
 
     public $notificationType;
     public $title;

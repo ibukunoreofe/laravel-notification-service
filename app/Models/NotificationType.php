@@ -27,6 +27,7 @@ class NotificationType extends Model
     const ALERT = 'alert';
     const NEWS = 'news';
     const UPDATE = 'update';
+    const SUBSCRIPTION = 'subscription';
 
 	protected $fillable = [
 		'type'
@@ -48,6 +49,7 @@ class NotificationType extends Model
             self::ALERT,
             self::NEWS,
             self::UPDATE,
+            self::SUBSCRIPTION,
         ];
     }
 }

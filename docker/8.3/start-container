@@ -14,7 +14,7 @@ php artisan migrate
 php artisan db:seed
 
 #  npm install
-#  npm run-script build
+npm install
 
 if [ ! -z "$WWWUSER" ]; then
     usermod -u $WWWUSER sail

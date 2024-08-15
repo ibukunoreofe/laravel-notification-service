@@ -7,6 +7,7 @@
 ```bash
 git clone <repository-url>
 cd <repository-directory>
+```
 
 ## Running via Docker Compose
 
@@ -26,18 +27,65 @@ docker compose exec -it laravel.test bash
 docker compose exec -it laravel.test bash
 ```
 
-## Contributing
+## Listening for WS event
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Using wscat for Testing WebSocket Connections
+You can use wscat, a WebSocket client for the command-line, to test your WebSocket connections.
 
-## Code of Conduct
+### Install wscat:
+```shell
+npm install -g wscat
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Connect to Your WebSocket Server:
+```shell
+wscat -c ws://localhost:6001/app/my-app-key?protocol=7&client=js&version=4.3.1&flash=false
+```
+Replace my-app-key with your actual Pusher app key.
 
-## Security Vulnerabilities
+Once connected, you can subscribe to channels and listen for events.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+
+#### After connecting, you can subscribe to a channel:
+```json
+{
+  "event": "pusher:subscribe",
+  "data": {
+    "auth": "",
+    "channel": "private-notifications.1"
+  }
+}
+```
+
+Replace my-app-key with your actual Pusher app key.
+
+Once connected, you can subscribe to channels and listen for events.
+
+Listen for Events:
+
+After subscribing, any event broadcasted on the channel will be received by wscat.
+
+
+## Using Postman for WebSocket Testing
+
+Open Postman and go to the WebSocket testing feature.  
+
+### Connect to the WebSocket using the URL:
+```shell
+ws://localhost:6001/app/my-app-key?protocol=7&client=js&version=4.3.1&flash=false
+```
+
+#### Subscribe to a Channel by sending the JSON payload:
+```json
+{
+  "event": "pusher:subscribe",
+  "data": {
+    "auth": "",
+    "channel": "notifications.alert"
+  }
+}
+```
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+The Project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

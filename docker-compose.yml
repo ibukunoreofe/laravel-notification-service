@@ -26,6 +26,8 @@ services:
                 condition: service_healthy
             redis:
                 condition: service_healthy
+            echo-server:
+                condition: service_started
 
     mysql:
         image: 'mysql/mysql-server:8.0'
@@ -75,6 +77,17 @@ services:
             retries: 3
             start_period: 10s
 
+    echo-server:
+        image: oanhnn/laravel-echo-server:2.0.0
+        container_name: echo-server
+        volumes:
+            - './laravel-echo-server.json:/app/laravel-echo-server.json'
+        ports:
+            - "6001:6001"
+        depends_on:
+            - redis
+        networks:
+            - sail
 networks:
     sail:
         driver: bridge

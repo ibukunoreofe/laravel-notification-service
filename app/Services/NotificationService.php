@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Events\NotificationSent;
 use App\Models\NotificationType;
 use App\Models\User;
 use App\Notifications\GeneralNotification;
@@ -21,7 +22,6 @@ class NotificationService
         $user->notify(new GeneralNotification(NotificationType::SUBSCRIPTION, $notificationType, null));
     }
 
-
     /**
      * Send a notification to a specific user.
      *
@@ -37,7 +37,7 @@ class NotificationService
     }
 
     /**
-     * Send a notification to multiple users.
+     * Send a notification to multiple users and broadcast it.
      *
      * @param \Illuminate\Support\Collection $users
      * @param string $notificationType
@@ -47,6 +47,10 @@ class NotificationService
      */
     public function sendToMultipleUsers($users, $notificationType, $title, $message)
     {
+        // Send notifications via email
         Notification::send($users, new GeneralNotification($notificationType, $title, $message));
+
+        // Broadcast the event to all subscribers of the notification type
+        event(new NotificationSent($notificationType, $title, $message));
     }
 }

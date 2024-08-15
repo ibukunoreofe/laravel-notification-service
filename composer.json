@@ -1,8 +1,8 @@
 {
-    "name": "laravel/laravel",
+    "name": "ibukunoreofe/laravel-notification-service",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
-    "keywords": ["laravel", "framework"],
+    "description": "This project implements a notification service using Laravel that allows users to subscribe to various notification types and receive notifications via email.",
+    "keywords": ["laravel", "framework", "notifications"],
     "license": "MIT",
     "require": {
         "php": "^8.2",

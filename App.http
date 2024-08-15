@@ -20,12 +20,11 @@ Content-Type: application/json
   "notification_type": "news"
 }
 
-### 3. Send Notification to a User
+### 3. Send Notification to all subscribers
 POST {{base_url}}/api/notifications/send
 Content-Type: application/json
 
 {
-  "user_id": {{ user_id }},
   "notification_type": "alert",
   "title": "System Alert",
   "message": "An important system alert has been triggered again."

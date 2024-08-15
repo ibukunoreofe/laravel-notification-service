@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\NotificationService;
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\NotificationType;
 
 class NotificationController extends Controller
 {
@@ -16,26 +16,34 @@ class NotificationController extends Controller
     }
 
     /**
-     * Send a notification to a user.
+     * Send a notification to all users subscribed to a specific notification type.
      */
     public function send(Request $request)
     {
         $request->validate([
-            'user_id' => 'required|integer|exists:users,id',
             'notification_type' => 'required|string|exists:notification_types,type',
             'title' => 'required|string',
             'message' => 'required|string',
         ]);
 
-        $user = User::findOrFail($request->user_id);
+        // Find the notification type
+        $notificationType = NotificationType::where('type', $request->notification_type)->firstOrFail();
 
-        $this->notificationService->sendToUser(
-            $user,
+        // Get all users subscribed to this notification type
+        $subscribedUsers = $notificationType->users;
+
+        if ($subscribedUsers->isEmpty()) {
+            return response()->json(['message' => 'No users subscribed to this notification type.'], 404);
+        }
+
+        // Send the notification to all subscribed users
+        $this->notificationService->sendToMultipleUsers(
+            $subscribedUsers,
             $request->notification_type,
             $request->title,
             $request->message
         );
 
-        return response()->json(['message' => 'Notification sent successfully.']);
+        return response()->json(['message' => 'Notification sent successfully to all subscribed users.']);
     }
 }

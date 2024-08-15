@@ -1,0 +1,32 @@
+### 1. Subscribe a User to a Notification Type
+POST http://mac.virtualbox:14080/api/notifications/subscribe
+Content-Type: application/json
+
+{
+  "user_id": 1,
+  "notification_type": "news"
+}
+
+### 2. Unsubscribe a User from a Notification Type
+POST http://mac.virtualbox:14080/api/notifications/unsubscribe
+Content-Type: application/json
+
+{
+  "user_id": 1,
+  "notification_type": "news"
+}
+
+### 3. Send Notification to a User
+POST http://mac.virtualbox:14080/api/notifications/send
+Content-Type: application/json
+
+{
+  "user_id": 1,
+  "notification_type": "alert",
+  "title": "System Alert",
+  "message": "An important system alert has been triggered."
+}
+
+### 4. View User's Notifications
+GET http://mac.virtualbox:14080/api/notifications/1
+Accept: application/json

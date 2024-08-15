@@ -6,6 +6,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * Class NotificationType
@@ -37,6 +38,14 @@ class NotificationType extends Model
 	{
 		return $this->hasMany(UserNotification::class);
 	}
+
+    /**
+     * The users that are subscribed to this notification type.
+     */
+    public function users(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'user_notifications', 'notification_type_id', 'user_id');
+    }
 
     /**
      * An array of all notification types

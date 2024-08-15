@@ -2,7 +2,10 @@
 
 namespace App\Notifications;
 
+use App\Contracts\NotificationHandlerInterface;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
+use Illuminate\Mail\Mailable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
@@ -27,6 +30,8 @@ class GeneralNotification extends Notification implements ShouldQueue
     }
 
     /**
+     * @param User $notifiable
+     * @return void
      * @throws \Exception
      */
     public function toMail($notifiable)
@@ -38,8 +43,13 @@ class GeneralNotification extends Notification implements ShouldQueue
         }
 
         $handlerClass = $handlers[$this->notificationType];
+
+        /**
+         * @var Mailable|NotificationHandlerInterface $handler
+         */
         $handler = app($handlerClass);
 
-        return $handler->handle($this->title, $this->message);
+        return $handler->handle($this->title, $this->message)
+            ->to($notifiable->routeNotificationFor('mail', $this));
     }
 }

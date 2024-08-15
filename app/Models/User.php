@@ -4,8 +4,8 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -20,6 +20,7 @@ use Illuminate\Notifications\Notifiable;
  * @property Carbon|null $updated_at
  * 
  * @property Collection|UserNotification[] $user_notifications
+ * @property Collection|NotificationType[] $notificationTypes
  *
  * @package App\Models
  */
@@ -38,6 +39,14 @@ class User extends Authenticatable
     {
 		return $this->hasMany(UserNotification::class);
 	}
+
+    /**
+     * The notification types that the user is subscribed to.
+     */
+    public function notificationTypes(): BelongsToMany
+    {
+        return $this->belongsToMany(NotificationType::class, 'user_notifications', 'user_id', 'notification_type_id');
+    }
 
     /**
      * The attributes that should be hidden for serialization.
@@ -60,5 +69,16 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /**
+     * Route notifications for the mail channel.
+     *
+     * @param \Illuminate\Notifications\Notification $notification
+     * @return string
+     */
+    public function routeNotificationForMail($notification)
+    {
+        return $this->email;
     }
 }
